@@ -4,21 +4,21 @@ import { Reveal, SectionHead } from '../components/ui.jsx'
 const USE_CASES = [
   { chip: '01 · Credit', title: 'Private Credit & Trade Finance', items: [
     'Automated waterfall tranches', 'Real-time on-chain valuation',
-    'Branded portal with integrated KYC, fiat rails and one-click yield payouts' ] },
+    'Branded portal with KYC, fiat rails and one-click yield payouts' ] },
   { chip: '02 · Yield', title: 'Active Yield & Arbitrage Vaults', items: [
     'Auto-compounding and algorithmic share pricing',
     'Direct liquidity integrations with lending markets', 'Automated risk controls' ] },
   { chip: '03 · Equity', title: 'Pre-IPO & Asset Syndicates', items: [
     'Regulatory-compliant digital shares',
-    'Digital onboarding, instant accredited verification, automated distribution',
-    'Built-in P2P order matching and private settlement rails' ] },
+    'Digital onboarding and instant accredited verification',
+    'P2P order matching and private settlement rails' ] },
 ]
 
 export function UseCases() {
   return (
     <section id="usecases"><div className="wrap">
       <SectionHead eyebrow="Use Cases" title="Built for products that live on-chain, not just tokens" />
-      <div className="cards3">
+      <div className="grid3">
         {USE_CASES.map((c, i) => (
           <Reveal key={c.title} delay={i * 0.08}>
             <div className="card">
@@ -33,17 +33,20 @@ export function UseCases() {
   )
 }
 
+const no = (t) => <><span className="mark no">✕</span>{t}</>
+const ok = (t) => <><span className="mark ok">✓</span>{t}</>
+
 const ROWS = [
-  ['Audience', 'Small businesses & startups', 'Tier-1 institutions ($50M+)', 'Private Credit, PayFi & Yield funds ($5M–$50M)'],
-  ['Cost & Time', 'Low', 'High + 6–12 month procurement', <a key="e" href="#book">Enquire →</a>],
-  ['Code Ownership', 'SaaS rental', 'Proprietary black box', '100% full source code ownership'],
-  ['Financial Logic', 'Static tokens only', 'No custom DeFi logic', 'Fully custom DeFi logic'],
-  ['Fees', 'Monthly subscription + per-investor metering', '10–50 bps cut of total TVL', '0% of your capital — fixed SLA / retainer'],
+  ['Audience', 'Small businesses & startups', 'Tier-1 institutions ($50M+)', ok('Private Credit, PayFi & Yield funds ($5M–$50M)')],
+  ['Cost & Time', 'Low', no('High + 6–12 month procurement'), <a key="e" href="#book">Enquire →</a>],
+  ['Code Ownership', no('SaaS rental'), no('Proprietary black box'), ok('100% full source code ownership')],
+  ['Financial Logic', no('Static tokens only'), no('No custom DeFi logic'), ok('Fully custom DeFi logic')],
+  ['Fees', no('Subscription + per-investor metering'), no('10–50 bps cut of total TVL'), ok('0% of your capital — fixed SLA / retainer')],
 ]
 
 export function Compare() {
   return (
-    <section id="compare"><div className="wrap">
+    <section id="compare" className="alt"><div className="wrap">
       <SectionHead eyebrow="Compare" title="Where Woof RWA sits">
         Between rented SaaS and enterprise monopolies there is a gap: funds that need real financial logic and want to own it.
       </SectionHead>
@@ -77,14 +80,14 @@ export function Work() {
   return (
     <section id="work"><div className="wrap">
       <Reveal>
-        <div className="band">
+        <div className="proof">
           <p className="big">Woof is a <b>core contributor team to Compound</b> and other blue-chip DeFi protocols. We have shipped production code in lending markets, oracles, risk parameters and liquidations — the exact machinery a tokenized fund needs on both sides: issuance and collateral.</p>
-          <div className="marquee"><div className="marquee-track">
-            {items.map((w, i) => <a key={i} href="https://woof.software" target="_blank" rel="noreferrer">{w}</a>)}
-          </div></div>
           <p className="foot">Logos are draft placeholders — final list and links to case studies TBD.</p>
         </div>
       </Reveal>
+      <div className="marquee"><div className="marquee-track">
+        {items.map((w, i) => <a key={i} href="https://woof.software" target="_blank" rel="noreferrer">{w}</a>)}
+      </div></div>
       <div className="strip">
         {[
           ['Audited code', 'External audits on every release; audit-ready repos and CI from day one.'],

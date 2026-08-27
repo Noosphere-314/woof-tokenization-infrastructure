@@ -40,39 +40,60 @@ export function Nav() {
   )
 }
 
+const PIPE = [
+  ['01', 'Compliance token'], ['02', 'Fund vault'], ['03', 'NAV feed'],
+  ['04', 'Custody & fiat'], ['05', 'Collateral listing'],
+]
+
+function Pipeline() {
+  const reduce = useReducedMotion()
+  const [active, setActive] = useState(0)
+  useEffect(() => {
+    if (reduce) return
+    const id = setInterval(() => setActive(a => (a + 1) % PIPE.length), 1600)
+    return () => clearInterval(id)
+  }, [reduce])
+  return (
+    <div className="pipe" aria-label="Issuance pipeline">
+      {PIPE.map(([k, v], i) => (
+        <div key={k} className={`pipe-item ${!reduce && active === i ? 'on' : ''}`}>
+          <span className="k">{k}</span>
+          <span className="v">{v}</span>
+        </div>
+      ))}
+    </div>
+  )
+}
+
 export function Hero() {
   const reduce = useReducedMotion()
-  const stagger = reduce ? {} : {
-    initial: { opacity: 0, y: 24 },
+  const anim = (d) => reduce ? {} : {
+    initial: { opacity: 0, y: 22 },
     animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.6, delay: d, ease: [0.22, 1, 0.36, 1] },
   }
-  const t = (d) => reduce ? {} : { transition: { duration: 0.6, delay: d, ease: [0.22, 1, 0.36, 1] } }
   return (
     <header className="hero" id="top">
-      <div className="blob b1" /><div className="blob b2" /><div className="blob b3" />
       <div className="hero-in">
-        <motion.span className="eyebrow" {...stagger} {...t(0)}>Tokenization Infrastructure for Digital Assets</motion.span>
-        <motion.h1 {...stagger} {...t(0.08)}>
-          Institutional-Grade{' '}
-          <motion.span
-            className="hl"
-            initial={reduce ? false : { scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
-          >RWA &amp; Yield</motion.span>{' '}
-          Infrastructure
+        <motion.span className="eyebrow" {...anim(0)}>Tokenization Infrastructure for Digital Assets</motion.span>
+        <motion.h1 {...anim(0.08)}>
+          Institutional-Grade <span className="grad">RWA &amp; Yield</span> Infrastructure
         </motion.h1>
-        <motion.p className="sub" {...stagger} {...t(0.16)}>Your own RWA platform live in 30 days.*</motion.p>
-        <motion.div {...stagger} {...t(0.24)}>
+        <motion.p className="sub" {...anim(0.16)}>
+          Your own RWA platform live in <b>30 days</b>.* Built for funds — under your brand, in your jurisdiction, on code you own.
+        </motion.p>
+        <motion.div className="hero-ctas" {...anim(0.24)}>
           <a className="btn" href="#book">Book a scope call</a>
+          <a className="btn ghost" href="#stack">See the stack</a>
         </motion.div>
-        <motion.p className="note" {...stagger} {...t(0.3)}>*From approved scope, on our pre-built issuance stack. Fully custom builds: 8&ndash;12 weeks.</motion.p>
-        <motion.div className="hero-stats" {...stagger} {...t(0.38)}>
-          <div className="stat"><b>100%</b><span>source code ownership</span></div>
-          <div className="stat"><b>0%</b><span>cut of your capital</span></div>
-          <div className="stat"><b>8&ndash;12 wk</b><span>scope to production</span></div>
-        </motion.div>
+        <motion.p className="note" {...anim(0.3)}>*From approved scope, on our pre-built issuance stack. Fully custom builds: 8–12 weeks.</motion.p>
       </div>
+      <motion.div {...anim(0.4)}><Pipeline /></motion.div>
+      <motion.div className="hero-stats" {...anim(0.5)}>
+        <div className="stat"><b>100%</b><span>source code ownership</span></div>
+        <div className="stat"><b>0%</b><span>cut of your capital</span></div>
+        <div className="stat"><b>8–12 wk</b><span>scope to production</span></div>
+      </motion.div>
     </header>
   )
 }

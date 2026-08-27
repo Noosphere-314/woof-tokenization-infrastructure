@@ -21,7 +21,7 @@ export function Faq() {
   const [open, setOpen] = useState(0)
   const reduce = useReducedMotion()
   return (
-    <section id="faq"><div className="wrap">
+    <section id="faq" className="alt"><div className="wrap">
       <SectionHead eyebrow="FAQ" title="The questions every fund asks first" />
       <div className="faq">
         {FAQS.map(([q, a], i) => {

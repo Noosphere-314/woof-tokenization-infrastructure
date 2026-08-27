@@ -1,13 +1,14 @@
 import React from 'react'
+import { motion, useReducedMotion } from 'framer-motion'
 import { Reveal, SectionHead } from '../components/ui.jsx'
 
 export function BestFit() {
   return (
-    <section id="fit"><div className="wrap">
+    <section id="fit" className="alt"><div className="wrap">
       <SectionHead eyebrow="The Best Fit" title="A custom solution — for those the market skips" />
-      <div className="fit">
-        <Reveal><div className="card">
-          <h3>What you keep</h3>
+      <div className="grid2">
+        <Reveal><div className="card green">
+          <h3><span className="good">What you keep</span></h3>
           <ul>
             <li>Your very own minting and redemption rules</li>
             <li>Your very own jurisdiction</li>
@@ -29,24 +30,39 @@ export function BestFit() {
   )
 }
 
-const STACK = [
-  ['Compliance token · ERC-3643', 'Eligibility checked inside the transfer itself. Whitelists, lockups and jurisdiction rules enforced on-chain.'],
-  ['Fund vault · ERC-7540', 'Subscription and redemption queues that settle at NAV on your schedule: T+1, T+7, monthly.'],
-  ['NAV pipeline', 'From your fund administrator to on-chain, via RedStone or Chainlink, with staleness checks and circuit breakers.'],
-  ['Investor onboarding', 'KYC/KYB and accreditation via Sumsub, Persona or your provider. Credentials issued once, reusable across products.'],
-  ['Portals', 'Investor portal (subscribe, redeem, positions, documents) and admin console (mint, burn, NAV, one-click distributions).'],
-  ['Custody & payments', 'Fireblocks, BitGo, Copper. Stablecoin and fiat rails with reconciliation.'],
-  ['Multichain', 'One issuance, deployed across chains with transfer restrictions preserved.'],
+const LAYERS = [
+  { n: 'Layer 1', title: 'On-chain core', items: [
+    ['Compliance token · ERC-3643', 'Eligibility checked inside the transfer. Whitelists, lockups, jurisdiction rules on-chain.'],
+    ['Fund vault · ERC-7540', 'Subscription and redemption queues settling at NAV: T+1, T+7, monthly.'],
+    ['Multichain', 'One issuance across chains — transfer restrictions preserved everywhere.'],
+  ]},
+  { n: 'Layer 2', title: 'Data & compliance', items: [
+    ['NAV pipeline', 'From your fund administrator to on-chain via RedStone or Chainlink, with staleness checks.'],
+    ['Investor onboarding', 'KYC/KYB and accreditation via Sumsub, Persona or your provider. Reusable credentials.'],
+    ['Reporting & exports', 'Positions, distributions and a full audit trail for your administrator and auditors.'],
+  ]},
+  { n: 'Layer 3', title: 'Operations', items: [
+    ['Portals', 'Investor portal (subscribe, redeem, positions) and admin console (mint, burn, NAV, payouts).'],
+    ['Custody', 'Fireblocks, BitGo, Copper — integrated with policy engines.'],
+    ['Payments', 'Stablecoin and fiat rails with reconciliation built in.'],
+  ]},
 ]
 
 export function Stack() {
   return (
     <section id="stack"><div className="wrap">
       <SectionHead eyebrow="What We Build" title="A complete issuance stack, deployed under your brand" />
-      <div className="stack">
-        {STACK.map(([t, p], i) => (
-          <Reveal key={t} delay={(i % 3) * 0.07}>
-            <div className="card"><span className="n">{String(i + 1).padStart(2, '0')}</span><h3>{t}</h3><p>{p}</p></div>
+      <div className="grid3">
+        {LAYERS.map((l, i) => (
+          <Reveal key={l.title} delay={i * 0.08}>
+            <div className="card layer">
+              <div className="lh"><span className="ln">{l.n}</span><h3>{l.title}</h3></div>
+              <ol>
+                {l.items.map(([t, p]) => (
+                  <li key={t}><strong>{t}</strong><span>{p}</span></li>
+                ))}
+              </ol>
+            </div>
           </Reveal>
         ))}
       </div>
@@ -57,21 +73,23 @@ export function Stack() {
 
 export function Collateral() {
   return (
-    <section id="collateral"><div className="wrap">
+    <section id="collateral" className="alt"><div className="wrap">
       <SectionHead eyebrow="Rails to Collateral" title="Most tokenized funds stop at issuance. Yours shouldn't." />
-      <div className="col-grid">
+      <div className="grid2">
         <Reveal>
-          <p className="lead">The asset exists on-chain and does nothing &mdash; that is where most tokenizations end.</p>
-          <p className="lead">The unlock is collateral. Once your token is accepted in a lending market, <b>it keeps earning yield while it is posted</b> &mdash; and that is what brings <span className="acc">leverage demand, treasury allocations and 24/7 settlement</span> to your product.</p>
-          <p className="lead">We are contributors to blue-chip lending protocols. We know what the risk reviewer asks, because we have been on that side of the table.</p>
-          <div className="flow">
-            <span className="step">Issue</span><span className="arr">→</span>
-            <span className="step">List as collateral</span><span className="arr">→</span>
-            <span className="step">Unlock leverage demand</span>
+          <div className="card">
+            <p className="lead">The asset exists on-chain and does nothing &mdash; that is where most tokenizations end.</p>
+            <p className="lead">The unlock is collateral. Once your token is accepted in a lending market, <span className="good">it keeps earning yield while it is posted</span> &mdash; and that is what brings <span className="acc">leverage demand, treasury allocations and 24/7 settlement</span> to your product.</p>
+            <p className="lead">We are contributors to blue-chip lending protocols. We know what the risk reviewer asks, because we have been on that side of the table.</p>
+            <div className="flow">
+              <span className="step">Issue</span><span className="arr">→</span>
+              <span className="step">List as collateral</span><span className="arr">→</span>
+              <span className="step hot">Unlock leverage demand</span>
+            </div>
           </div>
         </Reveal>
         <Reveal delay={0.12}>
-          <div className="req">
+          <div className="card req">
             <h3>Listing requirements we build for</h3>
             <ol>
               <li><div>NAV oracle <small>with staleness handling</small></div></li>
@@ -96,13 +114,21 @@ const STEPS = [
 ]
 
 export function Process() {
+  const reduce = useReducedMotion()
   return (
     <section id="process"><div className="wrap">
       <SectionHead eyebrow="Process" title="From first call to a live platform" />
-      <div className="steps">
+      <div className="timeline">
+        <motion.div
+          className="tl-line"
+          initial={reduce ? false : { scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
+        />
         {STEPS.map(([t, p, d], i) => (
-          <Reveal key={t} delay={i * 0.07}>
-            <div className="step-card">
+          <Reveal key={t} delay={i * 0.12}>
+            <div className="tl-item">
               <span className="num">{String(i + 1).padStart(2, '0')}</span>
               <h3>{t}</h3><p>{p}</p><span className="dur">{d}</span>
             </div>
@@ -115,9 +141,9 @@ export function Process() {
 
 export function Beyond() {
   return (
-    <section id="beyond"><div className="wrap">
+    <section id="beyond" className="alt"><div className="wrap">
       <SectionHead eyebrow="Beyond the First Product" title="Where your platform grows next" />
-      <div className="beyond">
+      <div className="grid4 beyond">
         {[
           ['Tranching', 'Senior and junior exposure from the same pool.'],
           ['Looping vaults', 'Leverage strategies built on your own asset.'],

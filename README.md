@@ -1,6 +1,6 @@
 # Woof RWA — marketing site
 
-React + Vite + framer-motion. Design language mirrors woof.software (Poppins/Inter/Fragment Mono, sky-gradient hero, navy #191826, accent #5DA6FD).
+React + Vite + framer-motion. Design: own layout in the woof.software tone — navy #191826 ground, accent #5DA6FD, sky gradient reserved for the closing CTA panel; Poppins/Inter/Fragment Mono; semantic colors (green = ownership wins, red = competitor pains); symmetric grids (3 stack layers x 3, 5-step timeline, animated 5-segment pipeline in the hero).
 
 ## Develop
 ```
