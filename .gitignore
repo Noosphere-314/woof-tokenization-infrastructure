@@ -6,3 +6,4 @@ dist-single/
 .env
 .netlify/
 dist-ssr/
+dist-single-docs/

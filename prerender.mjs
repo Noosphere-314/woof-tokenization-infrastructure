@@ -3,14 +3,14 @@ import { resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const root = dirname(fileURLToPath(import.meta.url))
-const out = resolve(root, 'dist/index.html')
+const { pages } = await import(resolve(root, 'dist-ssr/entry-server.js'))
 
-const { render } = await import(resolve(root, 'dist-ssr/entry-server.js'))
-const html = readFileSync(out, 'utf8').replace(
-  '<div id="root"></div>',
-  `<div id="root">${render()}</div>`
-)
+for (const [file, render] of Object.entries(pages)) {
+  const out = resolve(root, 'dist', file)
+  const html = readFileSync(out, 'utf8')
+  if (!html.includes('<div id="root"></div>')) throw new Error(`no mount point in ${file}`)
+  writeFileSync(out, html.replace('<div id="root"></div>', `<div id="root">${render()}</div>`))
+  console.log(`prerendered dist/${file}`)
+}
 
-writeFileSync(out, html)
 rmSync(resolve(root, 'dist-ssr'), { recursive: true, force: true })
-console.log('prerendered dist/index.html')

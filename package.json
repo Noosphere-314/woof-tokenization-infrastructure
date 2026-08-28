@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "vite build && vite build --ssr src/entry-server.jsx --outDir dist-ssr && node prerender.mjs",
     "build:single": "vite build --mode single",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "build:single-docs": "vite build --mode single-docs",
+    "export:artifacts": "npm run build:single && npm run build:single-docs && node export-artifacts.mjs"
   },
   "dependencies": {
     "framer-motion": "^11.11.0",
