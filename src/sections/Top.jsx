@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { motion, useReducedMotion, AnimatePresence } from 'framer-motion'
 
 const LINKS = [
-  ['#usecases', 'Use Cases'], ['#compare', 'Compare'], ['#stack', 'Stack'],
+  ['#usecases', 'Use Cases'], ['#compare', 'Compare'], ['#cost', 'Cost'], ['#stack', 'Stack'],
   ['#collateral', 'Collateral'], ['#process', 'Process'], ['#faq', 'FAQ'], ['/docs.html', 'Docs'],
 ]
 

@@ -81,6 +81,11 @@ export function Collateral() {
             <p className="lead">The asset exists on-chain and does nothing &mdash; that is where most tokenizations end.</p>
             <p className="lead">The unlock is collateral. Once your token is accepted in a lending market, <span className="good">it keeps earning yield while it is posted</span> &mdash; and that is what brings <span className="acc">leverage demand, treasury allocations and 24/7 settlement</span> to your product.</p>
             <p className="lead">We are contributors to blue-chip lending protocols. We know what the risk reviewer asks, because we have been on that side of the table.</p>
+            <p className="proof-line">
+              <span className="mark ok">✓</span>Already happening at institutional scale: Apollo&rsquo;s tokenized credit
+              fund is accepted as collateral on Morpho, with the leveraged strategy curated by Gauntlet. Public markets,
+              public numbers &mdash; the pattern is proven, and almost no issuer has built for it yet.
+            </p>
             <div className="flow">
               <span className="step">Issue</span><span className="arr">→</span>
               <span className="step">List as collateral</span><span className="arr">→</span>

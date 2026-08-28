@@ -112,6 +112,29 @@ td{color:var(--muted)}
 .tbl-wide table{min-width:1020px}
 .tbl-wide th,.tbl-wide td{padding:15px 15px;font-size:13.5px}
 .tbl-note{margin-top:18px;font-size:13.5px;color:var(--muted-2);max-width:76ch;line-height:1.65}
+
+/* ---------- rent vs own calculator ---------- */
+.calc-field{display:block}
+.calc-field+.calc-field{margin-top:30px;padding-top:28px;border-top:1px solid var(--line)}
+.calc-lbl{font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted-2);display:block}
+.calc-val{font-family:var(--font-display);font-weight:600;font-size:30px;color:var(--accent);display:block;margin:6px 0 14px;font-variant-numeric:tabular-nums}
+.calc-hint{font-size:12px;color:var(--muted-2);display:block;margin-top:10px;line-height:1.5}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:5px;border-radius:999px;background:linear-gradient(90deg,rgba(93,166,253,.7),rgba(93,166,253,.18));outline:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:22px;height:22px;border-radius:50%;background:var(--accent);border:3px solid var(--navy);box-shadow:0 3px 12px rgba(62,127,224,.5);cursor:pointer;transition:transform .15s}
+input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.12)}
+input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--accent);border:3px solid var(--navy);cursor:pointer}
+input[type=range]:focus-visible{outline:2px solid var(--accent);outline-offset:6px;border-radius:999px}
+.calc-out h3{font-family:var(--font-display);font-weight:600;font-size:17px;margin-bottom:20px}
+.bars{display:grid;gap:14px}
+.bar-row{display:grid;grid-template-columns:56px 1fr 92px;align-items:center;gap:12px}
+.bar-k{font-family:var(--font-mono);font-size:11.5px;color:var(--muted-2)}
+.bar-track{height:26px;background:rgba(255,255,255,.05);border-radius:8px;overflow:hidden}
+.bar-fill{height:100%;border-radius:8px;background:linear-gradient(90deg,rgba(255,148,148,.55),var(--bad))}
+.bar-v{font-family:var(--font-display);font-weight:600;font-size:16px;color:var(--bad);text-align:right;font-variant-numeric:tabular-nums}
+.calc-note{margin:22px 0 20px;font-size:14px;color:var(--muted);line-height:1.6}
+.calc-note b{color:var(--good)}
+.calc-out .btn{width:100%;text-align:center}
+.proof-line{margin-top:18px;padding:14px 18px;background:rgba(92,224,161,.07);border:1px solid rgba(92,224,161,.28);border-radius:14px;font-size:13.5px;line-height:1.6;color:var(--muted)}
 thead .col-woof{color:var(--white)}
 thead .col-woof small{color:var(--accent)}
 td.col-woof{color:var(--text);font-weight:600}
