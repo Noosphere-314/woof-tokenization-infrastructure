@@ -15,6 +15,8 @@ const FAQS = [
    'We build to the listing requirements lending protocols enforce — NAV oracle, redemption mechanism, liquidation logic — and we run the risk-review process with you. We are contributors to blue-chip lending protocols, so we know what the reviewer asks. Acceptance is the protocol’s decision; our job is that you arrive with every box checked.'],
   ['Why not just use Brickken or Securitize?',
    'If a SaaS constructor covers your needs, use it — honestly. Our clients are funds that hit its limits: real subscription/redemption queues, custom DeFi logic, their own jurisdiction, or fee models that stop making sense at scale. And Securitize is excellent if you pass their selection and their pricing fits your AUM.'],
+  ['Why not rent a white-label vault from an issuer?',
+   'Several issuers now rent out the stack they run themselves: you get their vault under your brand in days, and they keep operating the redemptions, the oracle and the APIs. If your product is standard and speed is everything, that is a good deal — take it. The trade is that the codebase stays theirs, the operations stay theirs, and the fee follows your assets for as long as the product lives. We sell the opposite trade: fixed price, your repository, your keys, and eligibility rules — lockups, investor caps, jurisdictions — enforced inside the token instead of a whitelist bolted on beside it. Funds choose us when the product has to outlive the vendor relationship.'],
 ]
 
 export function Faq() {

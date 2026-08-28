@@ -109,6 +109,9 @@ thead th small{display:block;font-family:var(--font-mono);font-weight:400;font-s
 tbody th{font-family:var(--font-mono);font-weight:400;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-2);white-space:nowrap}
 td{color:var(--muted)}
 .col-woof{background:rgba(93,166,253,.10);border-left:1px solid rgba(93,166,253,.35)}
+.tbl-wide table{min-width:1020px}
+.tbl-wide th,.tbl-wide td{padding:15px 15px;font-size:13.5px}
+.tbl-note{margin-top:18px;font-size:13.5px;color:var(--muted-2);max-width:76ch;line-height:1.65}
 thead .col-woof{color:var(--white)}
 thead .col-woof small{color:var(--accent)}
 td.col-woof{color:var(--text);font-weight:600}

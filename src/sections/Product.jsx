@@ -37,37 +37,80 @@ const no = (t) => <><span className="mark no">✕</span>{t}</>
 const ok = (t) => <><span className="mark ok">✓</span>{t}</>
 
 const ROWS = [
-  ['Audience', 'Small businesses & startups', 'Tier-1 institutions ($50M+)', ok('Private Credit, PayFi & Yield funds ($5M–$50M)')],
-  ['Cost & Time', 'Low', no('High + 6–12 month procurement'), <a key="e" href="#book">Enquire →</a>],
-  ['Code Ownership', no('SaaS rental'), no('Proprietary black box'), ok('100% full source code ownership')],
-  ['Financial Logic', no('Static tokens only'), no('No custom DeFi logic'), ok('Fully custom DeFi logic')],
-  ['Fees', no('Subscription + per-investor metering'), no('10–50 bps cut of total TVL'), ok('0% of your capital — fixed SLA / retainer')],
+  ['Audience',
+    'Small businesses & startups',
+    'Crypto-native distributors with an existing audience',
+    'Tier-1 institutions ($50M+)',
+    ok('Private Credit, PayFi & Yield funds ($5M–$50M)')],
+  ['Time to launch',
+    'Days, inside their console',
+    'Days — a configured instance of the vendor’s vault',
+    no('6–12 month procurement'),
+    '~30 days standard · 8–12 weeks fully custom'],
+  ['Who runs it day to day',
+    'You, in their console',
+    no('The vendor — redemptions, oracle, APIs'),
+    no('The vendor'),
+    ok('You, with runbooks and full handover')],
+  ['Code ownership',
+    no('SaaS rental'),
+    no('Vendor’s codebase, shared with their own product'),
+    no('Proprietary black box'),
+    ok('100% full source code ownership')],
+  ['Compliance depth',
+    no('Off-chain checks, basic whitelist'),
+    no('ERC-20 plus a whitelist — no identity layer'),
+    'Deep, but only on the vendor’s rails',
+    ok('ERC-3643 — eligibility enforced inside the transfer')],
+  ['Financial logic',
+    no('Static tokens only'),
+    'Configurable, within the vendor’s vault model',
+    no('No custom DeFi logic'),
+    ok('Fully custom DeFi logic')],
+  ['Fees',
+    no('Subscription + per-investor metering'),
+    no('Ongoing — service fee and a share of assets'),
+    no('10–50 bps cut of total TVL'),
+    ok('0% of your capital — fixed SLA / retainer')],
+  ['If you walk away',
+    no('Product stops with the subscription'),
+    no('Product stops — code and operations were never yours'),
+    no('Migration project'),
+    ok('You keep everything and can run it alone')],
 ]
 
 export function Compare() {
   return (
     <section id="compare" className="alt"><div className="wrap">
       <SectionHead eyebrow="Compare" title="Where Woof RWA sits">
-        Between rented SaaS and enterprise monopolies there is a gap: funds that need real financial logic and want to own it.
+        There are three ways to get a tokenized product today: rent a SaaS constructor, rent an operated vault from an
+        issuer, or pass an enterprise vendor’s selection. All three keep the stack. We build the fourth option.
       </SectionHead>
       <Reveal>
-        <div className="tbl-scroll">
+        <div className="tbl-scroll tbl-wide">
           <table>
             <thead><tr>
               <th></th>
               <th>No-Code / SaaS<small>DigiShares, Brickken</small></th>
-              <th>Enterprise Monopolies<small>Securitize, Tokeny</small></th>
+              <th>Operated white-label<small>issuers renting out their stack</small></th>
+              <th>Enterprise platforms<small>Securitize, Tokeny</small></th>
               <th className="col-woof">Woof RWA<small>custom, owned by you</small></th>
             </tr></thead>
             <tbody>
-              {ROWS.map(([label, a, b, w]) => (
+              {ROWS.map(([label, a, b, c, w]) => (
                 <tr key={label}>
-                  <th>{label}</th><td>{a}</td><td>{b}</td><td className="col-woof">{w}</td>
+                  <th>{label}</th><td>{a}</td><td>{b}</td><td>{c}</td><td className="col-woof">{w}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
+      </Reveal>
+      <Reveal delay={0.06}>
+        <p className="tbl-note">
+          Renting is the right call for a standard product that has to be live next week. It becomes the wrong call when
+          the product outgrows the vendor’s model, or when the fee follows your assets for as long as the product lives.
+        </p>
       </Reveal>
     </div></section>
   )
